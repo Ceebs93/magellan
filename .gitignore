@@ -8,3 +8,4 @@ private/
 config/local.yaml
 dev/
 tmp/
+setup_local.sh

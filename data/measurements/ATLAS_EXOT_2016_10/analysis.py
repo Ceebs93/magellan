@@ -41,6 +41,7 @@ def limit_vs_mA_GammaA_interpolation_function(vars, limit_type='limit_exp'):
     else:
         mA = vars[0]
         GammaA_div_mA = vars[1]
+        br_h_bb = vars[2]
         values = interpolation_function(mA, GammaA_div_mA)/0.5809
 
     return values

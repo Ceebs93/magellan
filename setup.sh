@@ -28,3 +28,12 @@ export ENV_MATPLOTLIB_STYLES_DIR=${Magellan_path}/python/matplotlib/styles/
 
 # - Jupyter setup scripts
 export ENV_JUPYTER_SETUPS_DIR=${Magellan_path}/python/jupyter/setups/
+
+
+
+## -- Local configuration stored in `setup_local.sh`
+
+if [ -f setup_local.sh ]; then
+    echo "Found setup_local.sh, sourcing it..."
+    source setup_local.sh
+fi

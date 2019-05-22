@@ -114,6 +114,16 @@ var_to_label = {
     'Z4'                                           : r'$Z_{4}$',
     'Z5'                                           : r'$Z_{5}$',
     'Z7'                                           : r'$Z_{7}$',
+    'm12'                                          : r'$|m_{12}|$ [GeV]',
+    'm12_2'                                        : r'$m_{12}^{2}$ [GeV$^{2}$]',
+    'l1'                                           : r'$\lambda_{1}$',
+    'l2'                                           : r'$\lambda_{2}$',
+    'l3'                                           : r'$\lambda_{3}$',
+    'l4'                                           : r'$\lambda_{4}$',
+    'l5'                                           : r'$\lambda_{5}$',
+    'l6'                                           : r'$\lambda_{6}$',
+    'l7'                                           : r'$\lambda_{7}$',
+    'lambda_Hhh'                                   : r'$\lambda_{Hhh}$',
     'cba'                                          : r'$\cos(\beta - \alpha)$',
     'tb'                                           : r'$\tan \beta $',
     'chi2_HS'                                      : r'$\chi^{2}_{\mathrm{HS}}$',
@@ -219,7 +229,9 @@ hv_v      = {
             'mA':                                  ('mA',          'mA [GeV]'),
             'mA':                                  ('mA',          'mA [GeV]'),
             'mA_bin':                              ('mA_bin',      'mA [GeV] (bin center)'),
+            'Z7':                                  ('Z7',          'Z7'),
             'Gamma_A':                             ('Gamma_A',     'Gamma_A [GeV]'),
+            'br_h_bb':                             ('br_h_bb',     'Br(h->bb)'),
             'br_H_bb':                             ('br_H_bb',     'Br(H->bb)'),
             'br_H_tt':                             ('br_H_tt',     'Br(H->tt)'),
             'br_H_tautau':                         ('br_H_tautau', 'Br(H->tautau)'),
@@ -233,6 +245,7 @@ hv_v      = {
             'br_A_tt':                             ('br_A_tt',     'Br(A->tt)'),
             'GammaA_div_mA':                       ('GammaA_div_mA', 'GammaA / mA'),
             'GammaH_div_mH':                       ('GammaH_div_mH', 'GammaH / mH'),
+            'xsec_sushi_ggh_H_NNLO':               ('xsec_sushi_ggh_H_NNLO',               'sig(H) [pb]'),
             'xsec_sushi_ggh_A_NNLO':               ('xsec_sushi_ggh_A_NNLO',               'sig(A) [pb]'),
             'xsec_sushi_ggh_A_NNLO_x_br_A_Zh':     ('xsec_sushi_ggh_A_NNLO_x_br_A_Zh',     'sig(A)xBr(A->Zh) [pb]'),
             'xsec_sushi_ggh_A_NNLO_x_br_A_tautau': ('xsec_sushi_ggh_A_NNLO_x_br_A_tautau', 'sig(A)xBr(A->tau tau) [pb]'),
@@ -242,7 +255,8 @@ hv_v      = {
             'xsec_sushi_ggh_H_NNLO_x_br_H_hh':     ('xsec_sushi_ggh_H_NNLO_x_br_H_hh',     'sig(H)xBr(H->hh) [pb]'),
             'xsec_sushi_ggh_H_NNLO_x_br_H_ZA':     ('xsec_sushi_ggh_H_NNLO_x_br_H_ZA',     'sig(H)xBr(H->ZA) [pb]'),
             'xsec_sushi_ggh_H_NNLO_x_br_H_tt':     ('xsec_sushi_ggh_H_NNLO_x_br_H_tt',     'sig(H)xBr(H->tt) [pb]'),
-            'xsec_sushi_ggh_H_NNLO_x_br_H_tautau': ('xsec_sushi_ggh_H_NNLO_x_br_H_tautau', 'sig(H)xBr(H->tautau) [pb]')
+            'xsec_sushi_ggh_H_NNLO_x_br_H_tautau': ('xsec_sushi_ggh_H_NNLO_x_br_H_tautau', 'sig(H)xBr(H->tautau) [pb]'),
+            'xsec_sushi_ggh_H_NNLO_x_br_H_hh_x_br_hh_bbbb' : ('xsec_sushi_ggh_H_NNLO_x_br_H_hh_x_br_hh_bbbb', 'sig(H)xBr(H->hh->bbbb) [pb]')
           }
 
 ### --- Axis limtis -- ###
@@ -260,13 +274,15 @@ var_to_limit = {
                 'xsec_sushi_ggh_A_NNLO_x_br_A_Zh'     : (1e-4, 10.0),
                 'xsec_sushi_ggh_H_NNLO_x_br_H_tautau' : (1e-5, 1.0),
                 'xsec_sushi_ggh_A_NNLO_x_br_A_tautau' : (1e-4, 1.0),
-                'xsec_sushi_ggh_H_NNLO_x_br_H_hh'     : (1e-3, 6.0)
+                'xsec_sushi_ggh_H_NNLO_x_br_H_hh'     : (1e-3, 6.0),
+                'xsec_sushi_ggh_H_NNLO_x_br_H_hh_x_br_hh_bbbb' : (1e-5, 6.0)
                }
 
 
 log_axes = ['xsec_sushi_ggh_A_NNLO_x_br_A_Zh',
             'xsec_sushi_ggh_H_NNLO_x_br_H_tautau',
             'xsec_sushi_ggh_H_NNLO_x_br_H_hh',
+            'xsec_sushi_ggh_H_NNLO_x_br_H_hh_x_br_hh_bbbb',
             'xsec_sushi_ggh_A_NNLO_x_br_A_tautau'
            ]
             

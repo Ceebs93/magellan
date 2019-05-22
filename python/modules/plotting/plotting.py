@@ -262,13 +262,15 @@ def exclusion_exp_and_theory_cba_tanb_plane(df, mA, mH, mHc, Z7, chi2_col=False,
 
     if HiggsBounds:
         sidebox_legends.append('HiggsBounds') 
-    fig,ax,ax_sidebar = exclusion_exp_and_theory(dfr, xcol='cba', ycol='tb',
-        chi2_col=chi2_col, chi2_bounds=chi2_bounds, HiggsBounds=HiggsBounds,
-        theory_constraints=theory_constraints, fig=None, ax=None,
-        sidebox_text=sidebox_text, sidebox_legends=sidebox_legends)
+
+    fig,ax = exclusion_exp_and_theory(dfr, xcol='cba', ycol='tb',
+                        chi2_col=chi2_col, chi2_bounds=chi2_bounds, HiggsBounds=HiggsBounds,
+                        theory_constraints=theory_constraints, fig=None, ax=None,
+#                       sidebox_text=sidebox_text, sidebox_legends=sidebox_legends)
+                        sidebox_text=[], sidebox_legends=[])
 
 
-    return fig,ax,ax_sidebar
+    return fig,ax
 
 
 def exclusion_exp_and_theory(df, xcol, ycol, chi2_col=False, chi2_bounds=[], HiggsBounds=False, 
@@ -277,9 +279,15 @@ def exclusion_exp_and_theory(df, xcol, ycol, chi2_col=False, chi2_bounds=[], Hig
 
     ax_sidebox = False
 
+    default_fig_width, default_fig_height = 10, 7
+    fig = plt.figure(figsize=(default_fig_width, default_fig_height))
+    fig,ax = plt.subplots()
+
+
     if ax is None:
         default_fig_width, default_fig_height = plt.rcParams['figure.figsize']
-        if sidebox_text or sidebox_legends:
+#       if sidebox_text or sidebox_legends:
+        if False:
             fig = plt.figure(figsize=(default_fig_width*1.3, default_fig_height))
             ax_sidebox = fig.add_axes([0.0, 0.05, 0.24, 0.9])
             ax_sidebox.grid('off')
@@ -287,8 +295,9 @@ def exclusion_exp_and_theory(df, xcol, ycol, chi2_col=False, chi2_bounds=[], Hig
             ax_sidebox.set_xticks(())
             ax_sidebox.set_yticks(())
             ax = fig.add_axes([0.32, 0.05, 0.65, 0.9])
-        else:
-            fig,ax = plt.subplots()
+#       else:
+#           fig = plt.figure(figsize=(default_fig_width, default_fig_height))
+            #ig,ax = plt.subplots()
 
 
     if chi2_col:
@@ -300,34 +309,34 @@ def exclusion_exp_and_theory(df, xcol, ycol, chi2_col=False, chi2_bounds=[], Hig
     if theory_constraints:
         theory_exclusion(df, xcol, ycol, theory_constraints=theory_constraints, fig=fig, ax=ax)
 
-    if sidebox_text or sidebox_legends:
+#   if sidebox_text or sidebox_legends:
 #       fig.subplots_adjust(left=0.5)
 
-        print("Creating sidebox")
-        text_xpos = 0.02
-        text_ypos_start = 0.90
-        text_vspace = 0.07
-    
-        for i,text in enumerate(sidebox_text):
-            fig.text(text_xpos, text_ypos_start-i*text_vspace, text, transform=ax.transAxes, fontsize=18)
+#       print("Creating sidebox")
+#       text_xpos = 0.02
+#       text_ypos_start = 0.90
+#       text_vspace = 0.07
+#   
+#       for i,text in enumerate(sidebox_text):
+#           fig.text(text_xpos, text_ypos_start-i*text_vspace, text, transform=ax.transAxes, fontsize=18)
 
 
-        for legend in sidebox_legends:
-    
-            color      = var_to_color[legend]
-            marker     = var_to_marker[legend]
-            markersize = var_to_markersize.get(legend)
-            linewidth  = var_to_linewidth[legend]
-            facecolor  = var_to_facecolor.get(legend, color)
-            edgecolor  = var_to_edgecolor.get(legend, color)
-            alpha      = var_to_alpha[legend]
-    
-            legend_label = var_to_label[legend]
-            ax_sidebox.scatter(-1, -1, marker=marker, s=markersize, linewidth=linewidth, edgecolor=edgecolor,
-                     facecolor=facecolor, label=legend_label)
-    
-        ax_sidebox.set_xlim(0.0, 1.0)
-        ax_sidebox.legend(loc=(-0.02, 0.2), frameon=False, fontsize=15, labelspacing=1)
+#       for legend in sidebox_legends:
+#   
+#           color      = var_to_color[legend]
+#           marker     = var_to_marker[legend]
+#           markersize = var_to_markersize.get(legend)
+#           linewidth  = var_to_linewidth[legend]
+#           facecolor  = var_to_facecolor.get(legend, color)
+#           edgecolor  = var_to_edgecolor.get(legend, color)
+#           alpha      = var_to_alpha[legend]
+#   
+#           legend_label = var_to_label[legend]
+#           ax_sidebox.scatter(-1, -1, marker=marker, s=markersize, linewidth=linewidth, edgecolor=edgecolor,
+#                    facecolor=facecolor, label=legend_label)
+#   
+#       ax_sidebox.set_xlim(0.0, 1.0)
+#       ax_sidebox.legend(loc=(-0.02, 0.2), frameon=False, fontsize=15, labelspacing=1)
 
     if ax_sidebox:
         return fig,ax,ax_sidebox

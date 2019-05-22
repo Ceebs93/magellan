@@ -57,13 +57,20 @@ def create_windows(ds, window_axes=[['cba', 'tb'], ['mH', 'mHc'], ['mA', 'mHc']]
     windows = []
 #   window0 = ds.to(hv.Points, kdims=window_axes[0], vdims=[])
     window0 = hv.Points(ds, kdims=[hv_v[window_axes[0][0]], hv_v[window_axes[0][1]]], vdims=[])
+#   if doformat:
+#       window0 = set_axis_properties(window0)
     windows.append(window0)
 
     for wax in window_axes[1:]:
         window = window0.map(lambda x: x.clone(kdims=[hv_v[wax[0]], hv_v[wax[1]]], vdims=[]), [hv.Points])
-        if doformat:
-            window = set_axis_properties(window)
+#       if doformat:
+#           window = set_axis_properties(window)
         windows.append(window)
+
+    if doformat:
+        for window in windows:
+           window = set_axis_properties(window)
+
 
     return windows
 
@@ -94,6 +101,9 @@ def set_axis_properties(holomap):
 
     xcol = holomap.dimensions()[0].name
     ycol = holomap.dimensions()[1].name
+
+    print(xcol)
+    print(ycol)
 
 
     opts_dict = {}
